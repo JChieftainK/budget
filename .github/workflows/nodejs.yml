@@ -36,11 +36,6 @@ jobs:
     - name: npm test
       run: npm run test-ci
       
-    - name: Show variables
-      run: |
-        echo ${{ github.ref }}
-        echo ${{ matrix.node-version }}
-        echo ${{ matrix.node-version == '12.x' }}
     - name: If Master Then Deploy
       if: success() && matrix.node-version == '12.x' && github.ref == 'refs/heads/master'
       uses: JamesIves/github-pages-deploy-action@releases/v3
