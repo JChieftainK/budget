@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod",
+    "build": "ng build --prod --base-href https://jchieftaink.github.io/budget/",
     "test": "ng test",
     "test-ci": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
