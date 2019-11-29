@@ -15,10 +15,15 @@ jobs:
     - uses: actions/checkout@v1
       with:
         fetch-depth: 1
+      
+      env:
+        CI: true
+      
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+      
     - name: npm install
       run: npm ci
 
@@ -36,9 +41,12 @@ jobs:
         echo ${{ github.ref }}
         echo ${{ matrix.node-version }}
         echo ${{ matrix.node-version == '12.x' }}
+        echo ${{ ls }}
     - name: If Master Then Deploy
       if: success() && matrix.node-version == '12.x' && github.ref == 'refs/heads/master'
-      run: echo deploy
-      
-      env:
-        CI: true
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BASE_BRANCH: master # The branch the action should deploy from.
+        BRANCH: gh-pages # The branch the action should deploy to.
+        FOLDER: dist/budget # The folder the action should deploy.
