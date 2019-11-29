@@ -13,6 +13,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -28,6 +30,16 @@ jobs:
 
     - name: npm test
       run: npm run test-ci
+      
+    - name: Show variables
+      run: |
+        echo ${{ github.ref }}
+        echo ${{ matrix.node-version }}
+        echo ${{ matrix.node-version }} == 12.x
+        echo ${{ success() }}
+    - name: If Master Then Deploy
+      if: success() && ${{ matrix.node-version }} == 12.x && github.ref == 'refs/heads/master'
+      run: echo deploy
       
       env:
         CI: true
