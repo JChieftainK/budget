@@ -1,12 +1,13 @@
-name: Node CI
+name: Master CI/CD
 
-on: [push]
+on: 
+  push:
+    branches: 
+      - master
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [10.x, 12.x]
@@ -36,8 +37,8 @@ jobs:
     - name: npm test
       run: npm run test-ci
       
-    - name: If Master Then Deploy
-      if: success() && matrix.node-version == '12.x' && github.ref == 'refs/heads/master'
+    - name: If Highest Node Version Then Deploy 
+      if: success() && matrix.node-version == '12.x'
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}

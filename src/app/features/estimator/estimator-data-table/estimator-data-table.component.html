@@ -1,4 +1,4 @@
-<div class="example-container">
+<div *ngIf="estimatorData.length > 0">
   <table mat-table [dataSource]="estimatorData" class="mat-elevation-z8">
       <ng-container matColumnDef="numberOfMonths">
           <th mat-header-cell *matHeaderCellDef> No. of Months </th>
