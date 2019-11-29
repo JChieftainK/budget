@@ -1,0 +1,26 @@
+<form [formGroup]="estimateForm">
+  <mat-form-field>
+      <span matPrefix>$ &nbsp;</span>
+      <input matInput 
+          type="number" 
+          placeholder="Current Account Amount"
+          formControlName="currentAmount">
+  </mat-form-field>
+
+  <mat-form-field>
+      <span matPrefix>$ &nbsp;</span>
+      <input matInput 
+          type="number" 
+          placeholder="Income Amount"
+          formControlName="incomePerMonth">
+  </mat-form-field>
+
+  <mat-form-field>
+      <span matPrefix>$ &nbsp;</span>
+      <input matInput 
+          type="number" 
+          placeholder="Expense Amount"
+          formControlName="expensePerMonth">
+  </mat-form-field>
+</form>
+<button mat-flat-button (click)="emitInputs()">Calculate</button>

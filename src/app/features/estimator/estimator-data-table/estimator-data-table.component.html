@@ -1,0 +1,16 @@
+<div class="example-container">
+  <table mat-table [dataSource]="estimatorData" class="mat-elevation-z8">
+      <ng-container matColumnDef="numberOfMonths">
+          <th mat-header-cell *matHeaderCellDef> No. of Months </th>
+          <td mat-cell *matCellDef="let element"> {{element.numberOfMonths}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="accountAmount">
+          <th mat-header-cell *matHeaderCellDef> Account Amount </th>
+          <td mat-cell *matCellDef="let element"> {{element.accountAmount | currency}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
