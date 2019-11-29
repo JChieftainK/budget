@@ -41,7 +41,6 @@ jobs:
         echo ${{ github.ref }}
         echo ${{ matrix.node-version }}
         echo ${{ matrix.node-version == '12.x' }}
-        echo ${{ ls }}
     - name: If Master Then Deploy
       if: success() && matrix.node-version == '12.x' && github.ref == 'refs/heads/master'
       uses: JamesIves/github-pages-deploy-action@releases/v3
