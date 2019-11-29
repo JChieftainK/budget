@@ -36,7 +36,6 @@ jobs:
         echo ${{ github.ref }}
         echo ${{ matrix.node-version }}
         echo ${{ matrix.node-version }} == 12.x
-        echo ${{ success() }}
     - name: If Master Then Deploy
       if: success() && ${{ matrix.node-version }} == 12.x && github.ref == 'refs/heads/master'
       run: echo deploy
